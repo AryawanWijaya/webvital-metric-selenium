@@ -5,34 +5,34 @@
         <listener class-name="com.ary.qa.listener.BaseListener"/>
     </listeners>
     <test name="Extract LCP">
-        <parameter name="browserName" value="debug-chrome"/>
+        <parameter name="browserName" value="chrome-dev-tools"/>
         <parameter name="author" value="nikolaus.wijaya"/>
         <classes>
-            <class name="com.ary.qa.LightHousePerformanceMetric">
+            <class name="com.ary.qa.CdpPerformanceMetric">
                 <methods>
-                    <include name="auditYoutubeUsingLightHouse"/>
+                    <include name="cdpPerformanceMetric"/>
                 </methods>
             </class>
         </classes>
     </test>
 <!--    <test name="Lighthouse test">-->
 <!--        <classes>-->
-<!--            <class name="com.ary.qa.AppTest">-->
+<!--            <class name="com.ary.qa.exampleBasicIntegration.LightHouseIntegration">-->
 <!--                <methods>-->
 <!--                    <include name="perforManceTestUsingLighthouse"/>-->
 <!--                </methods>-->
 <!--            </class>-->
-<!--            <class name="com.ary.qa.ExtractCls">-->
+<!--            <class name="com.ary.qa.exampleBasicIntegration.ExtractCls">-->
 <!--                <methods>-->
 <!--                    <include name="test"/>-->
 <!--                </methods>-->
 <!--            </class>-->
-<!--            <class name="com.ary.qa.ExtractFcp">-->
+<!--            <class name="com.ary.qa.exampleBasicIntegration.ExtractFcp">-->
 <!--                <methods>-->
 <!--                    <include name="checkFcp"/>-->
 <!--                </methods>-->
 <!--            </class>-->
-<!--            <class name="com.ary.qa.ExtractLcp">-->
+<!--            <class name="com.ary.qa.exampleBasicIntegration.ExtractLcp">-->
 <!--                <methods>-->
 <!--                    <include name="lcpUsingJs"/>-->
 <!--                </methods>-->

@@ -6,6 +6,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -71,6 +72,11 @@ public class BaseListener extends BaseClass implements ITestListener, ISuiteList
         options.setExperimentalOption("debuggerAddress", "localhost:9222");
         driver=new ChromeDriver(options);
         break;
+      case "chrome-dev-tools":
+        driver = new ChromeDriver();
+        ChromeDriver chromeDriver=(ChromeDriver)driver;
+        devTools=chromeDriver.getDevTools();
+        devTools.createSession();
     }
     driver.manage().window().maximize();
     webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -80,7 +86,6 @@ public class BaseListener extends BaseClass implements ITestListener, ISuiteList
   @Override
   public void onFinish(ITestContext testContext) {
     driver.quit();
-    System.out.println("lalalala");
     System.out.println(process.isAlive());
     if (process.isAlive()) {
       long pid = process.pid();
