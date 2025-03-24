@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="com.ary.qa.listener.BaseListener"/>
+    </listeners>
+    <test name="Extract LCP">
+        <parameter name="browserName" value="debug-chrome"/>
+        <parameter name="author" value="nikolaus.wijaya"/>
+        <classes>
+            <class name="com.ary.qa.LightHousePerformanceMetric">
+                <methods>
+                    <include name="auditYoutubeUsingLightHouse"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+<!--    <test name="Lighthouse test">-->
+<!--        <classes>-->
+<!--            <class name="com.ary.qa.AppTest">-->
+<!--                <methods>-->
+<!--                    <include name="perforManceTestUsingLighthouse"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="com.ary.qa.ExtractCls">-->
+<!--                <methods>-->
+<!--                    <include name="test"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="com.ary.qa.ExtractFcp">-->
+<!--                <methods>-->
+<!--                    <include name="checkFcp"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="com.ary.qa.ExtractLcp">-->
+<!--                <methods>-->
+<!--                    <include name="lcpUsingJs"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>
