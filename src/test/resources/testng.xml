@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="Web Vital Performance Test">
     <listeners>
         <listener class-name="com.ary.qa.listener.BaseListener"/>
     </listeners>
-    <test name="Extract LCP">
+    <test name="Performance Audit Using CDP">
         <parameter name="browserName" value="chrome-dev-tools"/>
         <parameter name="author" value="nikolaus.wijaya"/>
         <classes>
@@ -15,28 +15,26 @@
             </class>
         </classes>
     </test>
-<!--    <test name="Lighthouse test">-->
-<!--        <classes>-->
-<!--            <class name="com.ary.qa.exampleBasicIntegration.LightHouseIntegration">-->
-<!--                <methods>-->
-<!--                    <include name="perforManceTestUsingLighthouse"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--            <class name="com.ary.qa.exampleBasicIntegration.ExtractCls">-->
-<!--                <methods>-->
-<!--                    <include name="test"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--            <class name="com.ary.qa.exampleBasicIntegration.ExtractFcp">-->
-<!--                <methods>-->
-<!--                    <include name="checkFcp"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--            <class name="com.ary.qa.exampleBasicIntegration.ExtractLcp">-->
-<!--                <methods>-->
-<!--                    <include name="lcpUsingJs"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="LCP FCP CLS Audit Using JS">
+        <parameter name="browserName" value="chrome"/>
+        <parameter name="author" value="nikolaus.wijaya"/>
+        <classes>
+            <class name="com.ary.qa.JsPerformanceMetric">
+                <methods>
+                    <include name="auditYoutubeUsingJs"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Performance Audit Using Lighthouse">
+        <parameter name="browserName" value="debug-chrome"/>
+        <parameter name="author" value="nikolaus.wijaya"/>
+        <classes>
+            <class name="com.ary.qa.LightHousePerformanceMetric">
+                <methods>
+                    <include name="auditYoutubeUsingLightHouse"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

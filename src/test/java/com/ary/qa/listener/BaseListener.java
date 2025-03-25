@@ -86,19 +86,17 @@ public class BaseListener extends BaseClass implements ITestListener, ISuiteList
   @Override
   public void onFinish(ITestContext testContext) {
     driver.quit();
-    System.out.println(process.isAlive());
-    if (process.isAlive()) {
-      long pid = process.pid();
-      ProcessBuilder killBuilder = new ProcessBuilder("cmd", "/c", "taskkill /PID " + pid + " /F /T");
-      killBuilder.redirectErrorStream(true);
-      try {
+    try {
+      if (process.isAlive()) {
+        long pid = process.pid();
+        ProcessBuilder killBuilder = new ProcessBuilder("cmd", "/c", "taskkill /PID " + pid + " /F /T");
+        killBuilder.redirectErrorStream(true);
         Process killProcess = killBuilder.start();
         killProcess.waitFor();
-      } catch (Exception e) {
-        throw new RuntimeException(e);
-        }
+      }
+    }catch (Exception e) {
+      e.printStackTrace();
     }
-
   }
 
   @Override
