@@ -24,16 +24,25 @@ public class LightHouseIntegration extends BaseClass {
   FileReaderWriterUtility fileUtil = new FileReaderWriterUtility();
 
   @Test
-  public void testLighthouseWithoutSelenium() {
-    Runtime rt = Runtime.getRuntime();
-    String url = "https://www.youtube.com";
-    try {
-      rt.exec(
-          "cmd /c start cmd.exe /K \" lighthouse " + url
-              + "\"\" --emulated-from-factor=desktop-output "
-              + "--output-path=target/report.html && exit\" ");
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+  public void testLighthouseWithoutSelenium() throws IOException {
+    String url = "https://www.youtube.com/";
+    ProcessBuilder builder = new ProcessBuilder("cmd.exe",
+        "/c",
+        "lighthouse",
+        url,
+        "--port=9222",
+        "--preset=desktop",
+        "--output=html",
+        "--output-path=target/report-lighthouse.html");
+    builder.redirectErrorStream(true);
+    Process p = builder.start();
+    BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+    String line;
+    while (true) {
+      line = r.readLine();
+      if (line == null) {
+        break;
+      }
     }
   }
 
@@ -43,6 +52,7 @@ public class LightHouseIntegration extends BaseClass {
     ChromeOptions options = new ChromeOptions();
     options.setExperimentalOption("debuggerAddress", "localhost:9222");
     ChromeDriver driver = new ChromeDriver(options);
+    driver.manage().window().maximize();
     String url = "https://www.youtube.com/";
     driver.get(url);
     System.out.println("open youtube on port 9222");
@@ -63,7 +73,6 @@ public class LightHouseIntegration extends BaseClass {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
-
   }
 
   private static Process chromeDebug() throws IOException {

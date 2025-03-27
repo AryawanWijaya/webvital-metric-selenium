@@ -4,6 +4,7 @@
     <listeners>
         <listener class-name="com.ary.qa.listener.BaseListener"/>
     </listeners>
+    <parameter name="url" value="https://www.youtube.com/"/>
     <test name="Performance Audit Using CDP">
         <parameter name="browserName" value="chrome-dev-tools"/>
         <parameter name="author" value="nikolaus.wijaya"/>

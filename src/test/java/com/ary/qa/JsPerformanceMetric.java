@@ -6,6 +6,8 @@ import com.ary.qa.util.FileReaderWriterUtility;
 import com.ary.qa.util.PerformanceAudit;
 import com.aventstack.extentreports.Status;
 import org.hamcrest.Matchers;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
@@ -16,12 +18,12 @@ public class JsPerformanceMetric extends BaseClass {
   PerformanceAudit audit = new PerformanceAudit();
   FileReaderWriterUtility fileUtil = new FileReaderWriterUtility();
 
+  @Parameters({"url"})
   @Test
-  public void auditYoutubeUsingJs() throws FileNotFoundException {
+  public void auditYoutubeUsingJs(@Optional("https://www.google.com/")String url) throws FileNotFoundException {
     String templateReport = fileUtil.readHtml(
-        System.getProperty("user.dir") + "/src/test/resources/LighthouseTemplateTable.html");
-    driver.get("https://www.youtube.com/");
-    extentTest.pass("Success Open Youtube");
+        System.getProperty("user.dir") + "/src/test/resources/PerformanceTableReportTemplate.html");
+    driver.get(url);
     double lcp = audit.getPerformanceMetricByJsScript(jsExecutor, PerformanceMetric.LCP);
     double fcp = audit.getPerformanceMetricByJsScript(jsExecutor, PerformanceMetric.FCP);
     double cls = audit.getPerformanceMetricByJsScript(jsExecutor, PerformanceMetric.CLS);
