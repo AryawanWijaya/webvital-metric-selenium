@@ -11,7 +11,7 @@ Designed for QA engineers transitioning from functional to performance-aware tes
 
 ## Dependencies
 
-On this project I used TestNG framework that combined with playwright, this is the detail of dependencies that I used:
+On this project I used TestNG framework that combined with selenium java, this is the detail of dependencies that I used:
 
 - TestNG 7.11.0
 - Selenium Java 4.28.1
