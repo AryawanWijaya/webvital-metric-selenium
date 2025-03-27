@@ -28,7 +28,7 @@ On this project I used TestNG framework that combined with selenium java, this i
 
 > If you want to learn the basic integration between selenium, lighthouse, javascript executor, and chrome devtools you can open **exampleBasicIntegration** package, you can run it one by one without testng integration
 
-## Result of test:
+## Article reference:
 
 [//]: # (More detail you can read this [article]&#40;https://www.linkedin.com/pulse/visual-comparison-playwright-java-leveraging-chaining-ravato-wijaya-paf9c&#41;)
 
