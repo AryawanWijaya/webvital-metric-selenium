@@ -6,6 +6,7 @@ import com.ary.qa.util.FileReaderWriterUtility;
 import com.ary.qa.util.PerformanceAudit;
 import com.aventstack.extentreports.Status;
 import org.hamcrest.Matchers;
+import org.openqa.selenium.By;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -28,9 +29,14 @@ public class JsPerformanceMetric extends BaseClass {
     double fcp = audit.getPerformanceMetricByJsScript(jsExecutor, PerformanceMetric.FCP);
     double cls = audit.getPerformanceMetricByJsScript(jsExecutor, PerformanceMetric.CLS);
 
+//    click search textbox
+    driver.findElement(By.xpath(".//input[@name='search_query']")).click();
+    double fid = audit.getPerformanceMetricByJsScript(jsExecutor, PerformanceMetric.FID);
+
     StringBuilder rows = new StringBuilder();
     rows.append("<tr><td>FCP</td><td>").append(String.format("%.5f .s", fcp)).append("</td></tr>");
     rows.append("<tr><td>LCP</td><td>").append(String.format("%.5f .s", lcp)).append("</td></tr>");
+    rows.append("<tr><td>FID</td><td>").append(String.format("%.5f .ms", fid)).append("</td></tr>");
     rows.append("<tr><td>CLS</td><td>").append(String.format("%.5f", cls)).append("</td></tr>");
     templateReport = templateReport.replace("<!--replace_here-->", rows.toString());
     templateReport=templateReport.replace("{title}","Performance");
@@ -44,7 +50,9 @@ public class JsPerformanceMetric extends BaseClass {
     extentTest.pass("LCP is lesser than target");
     assertThat("CLS is bigger than target", cls, Matchers.lessThan(0.1));
     extentTest.pass("CLS is lesser than target");
+    assertThat("FID is bigger than target", cls, Matchers.lessThan(200.0));
+    extentTest.pass("FID is lesser than target");
     assertThat("FCP is bigger than target", fcp, Matchers.lessThan(0.0));
-
+    extentTest.pass("FCP is lesser than target");
   }
 }
