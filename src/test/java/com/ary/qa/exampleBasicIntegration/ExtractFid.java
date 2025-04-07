@@ -28,6 +28,6 @@ public class ExtractFid {
 
     double resultFid = Double.parseDouble(fid.get(0).get("processingStart").toString())
         -Double.parseDouble(fid.get(0).get("startTime").toString());
-    System.out.println("FID: "+resultFid);
+    System.out.println("FID: "+resultFid+" .ms");
   }
 }

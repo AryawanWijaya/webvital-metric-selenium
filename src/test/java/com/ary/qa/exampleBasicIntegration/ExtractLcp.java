@@ -29,8 +29,10 @@ public class ExtractLcp {
       System.out.println(
           "RenderTime: " + Double.parseDouble(String.valueOf(lcpResult.get("renderTime"))) / 1000
               + " s");
-      System.out.println("LoadTime: " + lcpResult.get("loadTime"));
-      System.out.println("ElementTime: " + lcpResult.get("element"));
+      System.out.println(
+          "LoadTime: " + Double.parseDouble(String.valueOf(lcpResult.get("loadTime"))) / 1000
+              + " s");
+      System.out.println("Element: " + lcpResult.get("element"));
     } else {
       System.out.println("No LCP Detail");
     }
